@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Snake Game"
+run/main_scene="res://scenes/Game.tscn"
+config/features=PackedStringArray("4.0")
+config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://scenes/Global.tscn"
+
+[display]
+
+window/size/viewport_width=600
+window/size/viewport_height=800
+window/size/resizable=false
+window/handheld/orientation="portrait"
+window/stretch/aspect="ignore"
+window/size/width=600
+window/size/height=1024
+window/size/test_width=300
+window/size/test_height=512
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+environment/default_environment="res://default_env.tres"
