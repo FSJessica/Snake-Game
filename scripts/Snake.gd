@@ -11,26 +11,28 @@ func _ready():
 	
 func _process(delta):
 	velocidade=Global.level+2
-	position = position + (direcao * velocidade)
+	position += transform.x * velocidade
 	if position.x < 0 or position.y < 0 or position.x > Global.width or position.y > Global.height:
 		vivo = false
 	get_node("Body").add_point(position)
-	print(position)
-	print(get_node("Body").position)
 	while get_node("Body").get_point_count() > tamanho:
 		get_node("Body").remove_point(0)
 
 func _input(event):
 	if player:
 		if event.is_action_pressed("ui_down"):
-			direcao = Vector2(0,1)
+			if rotation_degrees != 270:
+				rotation_degrees = 90
 		elif event.is_action_pressed("ui_left"):
-			direcao = Vector2(-1,0)
+			if rotation_degrees != 0:
+				rotation_degrees = 180
 		elif event.is_action_pressed("ui_right"):
-			direcao = Vector2(1,0)
+			if rotation_degrees != 180:
+				rotation_degrees = 0
 		elif event.is_action_pressed("ui_up"):
-			direcao = Vector2(0,-1)
-		
+			if rotation_degrees != 90:
+				rotation_degrees = 270
+
 func _vivo():
 	return vivo
 	
