@@ -9,18 +9,18 @@ var trail_offset =18
 func _ready():
 	target = get_node(target_path)
 
-func _process(delta):
+func _physics_process(delta):
 	global_position = Vector2(0,0)
 	global_rotation = 0
 	point = target.global_position
 	add_point(point)
 	while get_point_count() > trail_length:
 		remove_point(0)
+	_clean_area()
 	_collision_setup()
 
 func _collision_setup():
 	var i=0
-	_clean_area()
 	while i < points.size()-trail_offset:
 		var new_shape = CollisionShape2D.new()
 		$Area2D.add_child(new_shape)
@@ -43,6 +43,5 @@ func _clean_area():
 		$Area2D.remove_child(i)
 		i.queue_free()
 
-func _on_area_2d_body_entered(body):
-	if body.name=="Snake":
-		print("colidiu com corpo")
+func _on_area_2d_area_entered(area):
+	area.get_parent().vivo=false

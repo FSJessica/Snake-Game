@@ -13,7 +13,7 @@ func _ready():
 func _food_create():
 	food = Global.foodPath.instantiate()
 	add_child(food)
-	food.position = Vector2(randf_range(0, Global.width),randf_range(0,Global.height))
+	food.position = Vector2(randf_range(30, Global.width -30),randf_range(30,Global.height -30))
 
 func _process(delta):
 	get_node("Points").text=str(Global.points)

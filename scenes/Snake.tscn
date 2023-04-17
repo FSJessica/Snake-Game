@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1e7i81ies8kw"]
+[gd_scene load_steps=15 format=3 uid="uid://c1e7i81ies8kw"]
 
 [ext_resource type="Texture2D" uid="uid://kf3hex6h3tcr" path="res://images/snake.png" id="1"]
 [ext_resource type="Script" path="res://scripts/Snake.gd" id="2"]
@@ -7,7 +7,151 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(24.5086, 25.4512)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0i7e"]
+size = Vector2(3, 9)
+
+[sub_resource type="Animation" id="Animation_2akxu"]
+resource_name = "right_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_neman"]
+resource_name = "left_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_q51hn"]
+resource_name = "left_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 4.71239]
+}
+
+[sub_resource type="Animation" id="Animation_xmxyd"]
+resource_name = "right_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.28319, 4.71239]
+}
+
+[sub_resource type="Animation" id="Animation_rhltw"]
+resource_name = "up_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.71239, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_s7hgp"]
+resource_name = "up_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.71239, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_uf4l4"]
+resource_name = "down_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hdb1v"]
+resource_name = "down_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8f0ac"]
+_data = {
+"down_left": SubResource("Animation_hdb1v"),
+"down_right": SubResource("Animation_uf4l4"),
+"left_down": SubResource("Animation_neman"),
+"left_up": SubResource("Animation_q51hn"),
+"right_down": SubResource("Animation_2akxu"),
+"right_up": SubResource("Animation_xmxyd"),
+"up_left": SubResource("Animation_rhltw"),
+"up_right": SubResource("Animation_s7hgp")
+}
+
 [node name="Snake" type="CharacterBody2D"]
+rotation = 1.5708
 script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -22,3 +166,14 @@ texture = ExtResource("1")
 
 [node name="Body" parent="." instance=ExtResource("3_ykdgq")]
 target_path = NodePath("..")
+
+[node name="snakeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="snakeArea"]
+position = Vector2(8.5, 0.5)
+shape = SubResource("RectangleShape2D_e0i7e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8f0ac")
+}
