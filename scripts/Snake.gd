@@ -16,9 +16,9 @@ func _physics_process(delta):
 	move_local_x(delta * velocidade)
 	if position.x < 0 or position.y < 0 or position.x > Global.width or position.y > Global.height:
 		vivo = false
-	get_node("Body").add_point(position)
-	while get_node("Body").get_point_count() > tamanho:
-		get_node("Body").remove_point(0)
+	get_parent().get_node("Body").add_point(position)
+	while get_parent().get_node("Body").get_point_count() > tamanho:
+		get_parent().get_node("Body").remove_point(0)
 
 func _input(event):
 	if player:
@@ -53,4 +53,4 @@ func _vivo():
 	
 func _add_body():
 	tamanho += 10
-	get_node("Body").trail_length = tamanho
+	get_parent().get_node("Body").trail_length = tamanho

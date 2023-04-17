@@ -2,12 +2,8 @@ extends Line2D
 
 var target
 var point
-@export_node_path("Node2D") var target_path
 var trail_length = 50
 var trail_offset =18
-
-func _ready():
-	target = get_node(target_path)
 
 func _physics_process(delta):
 	global_position = Vector2(0,0)

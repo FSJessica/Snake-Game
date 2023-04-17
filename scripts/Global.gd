@@ -2,6 +2,7 @@ extends Node2D
 
 var snakePath = preload("res://scenes/Snake.tscn")
 var foodPath = preload ("res://scenes/Food.tscn")
+var bodyPath = preload("res://scenes/Body.tscn")
 var level
 var points
 var width  

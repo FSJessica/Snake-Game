@@ -2,12 +2,16 @@ extends Node2D
 
 var snake
 var food
+var body
 
 func _ready():
 	randomize()
 	snake = Global.snakePath.instantiate()
 	snake.player = true
+	body=Global.bodyPath.instantiate()
+	body.target=snake
 	add_child(snake)
+	add_child(body)
 	_food_create()
 
 func _food_create():
