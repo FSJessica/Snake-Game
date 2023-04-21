@@ -40,4 +40,5 @@ func _clean_area():
 		i.queue_free()
 
 func _on_area_2d_area_entered(area):
-	area.get_parent().vivo=false
+	if area.name=="snakeArea":
+		area.get_parent().vivo=false

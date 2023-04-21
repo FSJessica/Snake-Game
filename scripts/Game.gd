@@ -10,8 +10,8 @@ func _ready():
 	snake.player = true
 	body=Global.bodyPath.instantiate()
 	body.target=snake
-	add_child(snake)
 	add_child(body)
+	add_child(snake)
 	_food_create()
 
 func _food_create():
